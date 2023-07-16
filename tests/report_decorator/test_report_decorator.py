@@ -2,26 +2,27 @@ import re
 from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
 from inventory_report.reports.colored_report import ColoredReport
+from inventory_report.inventory.product import Product
 
 PRODUCTS = [
-    {
-        "id": "1",
-        "nome_do_produto": "Nicotine Polacrilex",
-        "nome_da_empresa": "Target Corporation",
-        "data_de_fabricacao": "2021-02-18",
-        "data_de_validade": "2023-09-17",
-        "numero_de_serie": "CR25 1551 4467 2549 4402 1",
-        "instrucoes_de_armazenamento": "instrucao 1",
-    },
-    {
-        "id": "2",
-        "nome_do_produto": "fentanyl citrate",
-        "nome_da_empresa": "Target Corporation",
-        "data_de_fabricacao": "2020-12-06",
-        "data_de_validade": "2023-12-25",
-        "numero_de_serie": "FR29 5951 7573 74OY XKGX 6CSG D20",
-        "instrucoes_de_armazenamento": "instrucao 2",
-    },
+    Product(
+        "1",
+        "Nicotine Polacrilex",
+        "Target Corporation",
+        "2021-02-18",
+        "2023-09-17",
+        "CR25 1551 4467 2549 4402 1",
+        "instrucao 1",
+    ),
+    Product(
+        "2",
+        "fentanyl citrate",
+        "Target Corporation",
+        "2020-12-06",
+        "2023-12-25",
+        "FR29 5951 7573 74OY XKGX 6CSG D20",
+        "instrucao 2",
+    ),
 ]
 
 
