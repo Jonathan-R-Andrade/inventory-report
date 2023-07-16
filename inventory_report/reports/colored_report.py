@@ -1,11 +1,13 @@
+from inventory_report.inventory.product import Product
+from inventory_report.reports.report import Report
 import re
 
 
 class ColoredReport:
-    def __init__(self, report_type):
+    def __init__(self, report_type: Report):
         self.report_type = report_type
 
-    def __colorize_dates(self, report, color_code):
+    def __colorize_dates(self, report: str, color_code: int) -> str:
         dates = re.findall(r"(\d+-\d+-\d+)", report)
 
         for date in dates:
@@ -16,7 +18,7 @@ class ColoredReport:
 
         return report
 
-    def __colorize_companies(self, report, color_code):
+    def __colorize_companies(self, report: str, color_code: int) -> str:
         companies = re.findall(r"(- .+:)", report)
 
         for company in companies:
@@ -27,7 +29,9 @@ class ColoredReport:
 
         return report
 
-    def __colorize_total_stocked_products(self, report, color_code):
+    def __colorize_total_stocked_products(
+        self, report: str, color_code: int
+    ) -> str:
         total_stocked_products = re.findall(r"(: \d+)", report)
 
         for stocked_product in total_stocked_products:
@@ -38,7 +42,7 @@ class ColoredReport:
 
         return report
 
-    def generate(self, products_list):
+    def generate(self, products_list: list[Product]) -> str:
         report = self.report_type.generate(products_list)
         index_start = report.find("mais produtos:") + 15
         index_finish = report.find("\n", index_start)
