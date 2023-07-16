@@ -1,9 +1,10 @@
 from collections import Counter
 from datetime import datetime
+from inventory_report.reports.report import Report
 from inventory_report.inventory.product import Product
 
 
-class SimpleReport:
+class SimpleReport(Report):
     @classmethod
     def generate(cls, products: list[Product]) -> str:
         def sort_dates(iso_format_date):
