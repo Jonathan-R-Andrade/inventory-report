@@ -6,7 +6,7 @@ from inventory_report.reports.complete_report import CompleteReport
 from inventory_report.reports.colored_report import ColoredReport
 
 
-class InventoryRefactor(Iterable):
+class Inventory(Iterable):
     def __init__(self, importer: Importer):
         self.importer = importer
         self.data = []
