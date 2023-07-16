@@ -1,28 +1,29 @@
 from collections import Counter
 from datetime import datetime
+from inventory_report.inventory.product import Product
 
 
 class SimpleReport:
     @classmethod
-    def generate(cls, products):
+    def generate(cls, products: list[Product]) -> str:
         def sort_dates(iso_format_date):
             date = datetime.fromisoformat(iso_format_date)
             return datetime.toordinal(date)
 
         manufacturing_dates = [
-            product["data_de_fabricacao"] for product in products
+            product.data_de_fabricacao for product in products
         ]
         manufacturing_dates.sort(key=sort_dates)
 
         expiration_dates = [
-            product["data_de_validade"]
+            product.data_de_validade
             for product in products
-            if datetime.fromisoformat(product["data_de_validade"])
+            if datetime.fromisoformat(product.data_de_validade)
             > datetime.now()
         ]
         expiration_dates.sort(key=sort_dates)
 
-        companies = [product["nome_da_empresa"] for product in products]
+        companies = [product.nome_da_empresa for product in products]
         company_with_more_products, _ = Counter(companies).most_common(1)[0]
 
         return (

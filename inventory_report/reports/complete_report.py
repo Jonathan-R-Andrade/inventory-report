@@ -1,12 +1,13 @@
 from collections import Counter
 from inventory_report.reports.simple_report import SimpleReport
+from inventory_report.inventory.product import Product
 
 
 class CompleteReport(SimpleReport):
     @classmethod
-    def generate(cls, products):
+    def generate(cls, products: list[Product]) -> str:
         report = super().generate(products)
-        companies = [product["nome_da_empresa"] for product in products]
+        companies = [product.nome_da_empresa for product in products]
         products_by_companies = Counter(companies).items()
         list_of_products_by_companies = [
             f"- {company}: {total_product}\n"
