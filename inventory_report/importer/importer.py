@@ -5,5 +5,5 @@ from inventory_report.inventory.product import Product
 class Importer(ABC):
     @classmethod
     @abstractmethod
-    def import_data(cls, file_path) -> list[Product]:
+    def import_data(cls, file_path: str) -> list[Product]:
         raise NotImplementedError

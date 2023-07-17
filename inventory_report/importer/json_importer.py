@@ -5,7 +5,7 @@ import json
 
 class JsonImporter(Importer):
     @classmethod
-    def import_data(cls, file_path) -> list[Product]:
+    def import_data(cls, file_path: str) -> list[Product]:
         file_type = file_path.split(".")[-1]
         if file_type.lower() != "json":
             raise ValueError("Arquivo inválido")

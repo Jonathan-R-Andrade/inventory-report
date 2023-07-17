@@ -11,10 +11,10 @@ class Inventory(Iterable):
         self.importer = importer
         self.data = []
 
-    def __iter__(self):
+    def __iter__(self) -> InventoryIterator:
         return InventoryIterator(self.data)
 
-    def import_data(self, file_path: str, report_type: str):
+    def import_data(self, file_path: str, report_type: str) -> str:
         self.data.extend(self.importer.import_data(file_path))
         if report_type == "simples":
             return ColoredReport(SimpleReport).generate(self.data)
